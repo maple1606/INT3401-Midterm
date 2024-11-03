@@ -3,7 +3,9 @@ SELECT
     three_hours_ago.aws AS "AWS-3h", 
     two_hours_ago.aws AS "AWS-2h", 
     one_hour_ago.aws AS "AWS-1h", 
-    one_hour_later.aws AS "AWS+1h"
+    one_hour_later.aws AS "AWS+1h",
+    three_hours_later.aws AS "AWS+3h",
+    six_hours_later.aws AS "AWS+6h"
 FROM 
     extracted_weather_data AS current
 LEFT JOIN 
@@ -26,11 +28,23 @@ LEFT JOIN
     ON current.row = one_hour_later.row
     AND current.col = one_hour_later.col
     AND one_hour_later.date = current.date + INTERVAL '1 hours' 
+LEFT JOIN 
+    extracted_weather_data AS three_hours_later
+    ON current.row = three_hours_later.row
+    AND current.col = three_hours_later.col
+    AND three_hours_later.date = current.date + INTERVAL '3 hours'
+LEFT JOIN 
+    extracted_weather_data AS six_hours_later
+    ON current.row = six_hours_later.row
+    AND current.col = six_hours_later.col
+    AND six_hours_later.date = current.date + INTERVAL '6 hours'
 WHERE 
     current.aws IS NOT NULL 
     AND one_hour_ago.aws IS NOT NULL 
     AND two_hours_ago.aws IS NOT NULL 
     AND three_hours_ago.aws IS NOT NULL 
     AND one_hour_later.aws IS NOT NULL 
+    AND three_hours_later.aws IS NOT NULL 
+    AND six_hours_later.aws IS NOT NULL
 ORDER BY 
     current.date ASC;
