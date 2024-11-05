@@ -1,3 +1,5 @@
 DATA_SV/
 *.csv
 *.txt
+
+*.env
