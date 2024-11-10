@@ -110,8 +110,7 @@ class TimeSeriesProcessor:
 
 		final_X = np.array(final_X)
 		final_y = np.array(final_y)
-		print(f"get_data: final_X shape: {
-			  final_X.shape}, final_y shape: {final_y.shape}")
+		print(f"get_data: final_X shape: {final_X.shape}, final_y shape: {final_y.shape}")
 		return final_X, final_y
 
 	def get_sequence_data_for_cluster(self, df_dict):

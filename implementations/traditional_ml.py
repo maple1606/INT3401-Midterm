@@ -200,13 +200,14 @@ def train_with_config(TIME_STEP, FUTURE_STEP, N_CLUSTERS):
 
 
     import matplotlib.pyplot as plt
+
     def draw_scatter_plot(y_true, y_pred, title, model_name, month, cluster, optional=""):
         plt.scatter(y_true, y_pred)
         plt.title(title)
         plt.xlabel("True")
         plt.ylabel("Predicted")
         plt.savefig(RESULT_PATH + f"{model_name}_{month}-ts{TIME_STEP}_fs{FUTURE_STEP}_cluster_{cluster}{optional}.png")
-        plt.show()
+        plt.close()
 
 
 
