@@ -1,5 +1,4 @@
 DATA_SV/
-*.csv
-*.txt
 
 *.env
+*/__pycache__/
